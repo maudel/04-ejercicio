@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import {Elemento, SegundoElemento} from '../elemento';
 @Component({
   selector: 'todo-list-manager',
   template: `
@@ -23,16 +23,19 @@ export class ListManagerComponent implements OnInit {
   esMartes = false;
   valorFinal = 1;
   rojo = 'blue';
-  todoList = [
-    {title: 'Inslala NodeJS'},
-    {title: 'Instala Angular CLI'},
-    {title: 'crear new app'},
-    {title: 'correr app'},
-    {title: 'desarrolladro app'},
-    {title: 'deployar app'},
-  ];
+  todoList: Array<Elemento> = [] ;
   excede = this.todoList.length > 0;
-  constructor() { }
+  constructor() {
+    this.todoList = [
+      new Elemento('Inslala NodeJS', 'nodejs'),
+      new Elemento('Instala Angular CLI', 'angular cli'),
+      new Elemento('crear new app', 'crear nueva app en angular cli'),
+      new Elemento('correr app', 'correr app'),
+      new Elemento('desarrolladro app', 'desarrollar'),
+      new Elemento('deployar app', 'deployar app'),
+];
+
+   }
 
   ngOnInit() {
   }
@@ -52,7 +55,7 @@ export class ListManagerComponent implements OnInit {
   }
   agregaItem(): void {
 
-    this.todoList.push({ title: this.title});
+    this.todoList.push(new Elemento(this.title, '') );
   }
   cambiarTitulo (event: any): void {
     console.log(event);
@@ -61,7 +64,7 @@ export class ListManagerComponent implements OnInit {
   }
   addItem(title: string): void {
     console.log('asdasd')
-    this.todoList.push({ title });
+    this.todoList.push( new Elemento(title, '') );
   }
 
 }

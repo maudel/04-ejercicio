@@ -6,6 +6,9 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
     <p>
       {{item.title}}
     </p>
+    <p>
+      {{item.descripcion}}
+    </p>
   `,
   styleUrls: ['./item.component.scss']
 })
