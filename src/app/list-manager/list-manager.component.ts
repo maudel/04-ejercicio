@@ -1,9 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import {Elemento, SegundoElemento} from '../elemento';
+import { TodoListService } from '../todo-list.service';
+import { TodoListStorageService } from '../todo-list-storage.service';
+
+const defaultList = [
+  { title: 'install NodeJS' },
+  { title: 'install Angular CLI' },
+  { title: 'create new app' },
+  { title: 'serve app' },
+  { title: 'develop app' },
+  { title: 'deploy app' },
+];
 @Component({
   selector: 'todo-list-manager',
   template: `
-  <div class="">
+  <div class="todo-app">
     <h1>
       {{title}}
     </h1>
@@ -25,19 +36,14 @@ export class ListManagerComponent implements OnInit {
   rojo = 'blue';
   todoList: Array<Elemento> = [] ;
   excede = this.todoList.length > 0;
-  constructor() {
-    this.todoList = [
-      new Elemento('Inslala NodeJS', 'nodejs'),
-      new Elemento('Instala Angular CLI', 'angular cli'),
-      new Elemento('crear new app', 'crear nueva app en angular cli'),
-      new Elemento('correr app', 'correr app'),
-      new Elemento('desarrolladro app', 'desarrollar'),
-      new Elemento('deployar app', 'deployar app'),
-];
+  constructor(private todoListService: TodoListService,
+              private todoListStorageService: TodoListStorageService) {
+
 
    }
 
   ngOnInit() {
+    this.todoList = this.todoListStorageService.get();
   }
 
 
@@ -63,8 +69,7 @@ export class ListManagerComponent implements OnInit {
 
   }
   addItem(title: string): void {
-    console.log('asdasd')
-    this.todoList.push( new Elemento(title, '') );
+    this.todoListStorageService.post(new Elemento(title, ''));
   }
 
 }

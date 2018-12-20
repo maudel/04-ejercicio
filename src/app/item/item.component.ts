@@ -3,12 +3,12 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 @Component({
   selector: 'todo-item',
   template: `
-    <p>
-      {{item.title}}
-    </p>
-    <p>
-      {{item.descripcion}}
-    </p>
+    <div class="todo-item">
+      <p>
+        {{item.title}}
+      </p>
+      <button class="btn-red" (click)="removeItem()">Eliminar</button>
+    </div>
   `,
   styleUrls: ['./item.component.scss']
 })
@@ -24,5 +24,7 @@ export class ItemComponent implements OnInit {
   ngOnInit() {
 
   }
+  removeItem() {
 
+  }
 }
